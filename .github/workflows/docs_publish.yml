@@ -1,0 +1,34 @@
+name: Build and Publish docs
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Main Repository
+      uses: actions/checkout@v2
+      with:
+        repository: 'DbSyncKit/DbSyncKit'  
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '8.0' 
+
+    - name: Build and Publish Docs
+      run: |
+        cd DbSyncKit.Docs
+
+        # Install any required dependencies
+        dotnet restore
+
+        # Build documentation
+        dotnet build -c Release
+
+        # Run the Statiq documentation console app with necessary arguments and secrets
+        dotnet run deploy -s NetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -s NetlifyAccessToken=${{ secrets.NETLIFY_API_KEY }}
