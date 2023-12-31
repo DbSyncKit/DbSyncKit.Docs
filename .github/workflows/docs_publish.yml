@@ -37,3 +37,4 @@ jobs:
 
         # Run the Statiq documentation console app with necessary arguments and secrets
         dotnet run deploy -s NetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -s NetlifyAccessToken=${{ secrets.NETLIFY_API_KEY }}
+        dotnet nuget push bin/Release/*.snupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_DEPLOY }}
