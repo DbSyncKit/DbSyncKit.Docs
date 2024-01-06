@@ -34,14 +34,13 @@ jobs:
       run: |
         cd DbSyncKit.Docs
 
-        echo '{"NetlifySiteId": "=> NETLIFY_SITE_ID","NetlifyAccessToken": "=> NETLIFY_API_KEY"}' > appsettings.config
-
         # Install any required dependencies
         dotnet restore
 
         # Build documentation
         dotnet build -c Release
 
+
         # Run the Statiq documentation console app with necessary arguments and secrets
-        dotnet run  deploy -s IgnoreInvalidXrefs=true --framework net8.0
+        dotnet run  deploy -s NetlifySiteId="=> NETLIFY_SITE_ID" -s NetlifyAccessToken="=> NETLIFY_API_KEY" -s IgnoreInvalidXrefs=true --framework net8.0
         
