@@ -8,6 +8,7 @@ on:
 
 jobs:
   build_and_publish:
+    environment: NETLIFY
     runs-on: ubuntu-latest
 
     steps:
@@ -27,12 +28,13 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Build and Publish Docs
-      env: 
+      env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_API_KEY: ${{ secrets.NETLIFY_API_KEY }}
-        
       run: |
         cd DbSyncKit.Docs
+
+        echo ${NETLIFY_SITE_ID}
 
         # Install any required dependencies
         dotnet restore
