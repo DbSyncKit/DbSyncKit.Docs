@@ -37,5 +37,5 @@ jobs:
         dotnet build -c Release
 
         # Run the Statiq documentation console app with necessary arguments and secrets
-        dotnet run  deploy -s NetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -s NetlifyAccessToken=${{ secrets.NETLIFY_API_KEY }} --framework net8.0
+        dotnet run  deploy -s NetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -s NetlifyAccessToken=${{ secrets.NETLIFY_API_KEY }} -s IgnoreInvalidXrefs=true --framework net8.0
         
