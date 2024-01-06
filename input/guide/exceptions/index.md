@@ -6,31 +6,29 @@ ShowInSidebar: true
 Xref: exceptions
 ---
 
-# Handling Exceptions in DbSyncKit
-
 DbSyncKit may encounter exceptions during various operations, such as database connections, synchronization, or data queries. This guide outlines common exceptions you may encounter and how to handle them.
 
-## Exception Types
+# Exception Types
 
-### MySQL Exceptions
+## MySQL Exceptions
 
 1. **`MySqlException`**
    - Thrown by MySqlConnection or MySqlDataAdapter during MySQL-related operations.
    - Refer to the [MySQL Documentation](https://dev.mysql.com/doc/connector-net/en/) for details on specific exceptions.
 
-### MSSQL Exceptions
+## MSSQL Exceptions
 
 1. **`SqlException`**
    - Thrown by SqlConnection or SqlDataAdapter during MSSQL-related operations.
    - Refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlexception) for details on specific exceptions.
 
-### PostgreSQL Exceptions
+## PostgreSQL Exceptions
 
 1. **`NpgsqlException`**
    - Thrown by NpgsqlConnection or NpgsqlDataAdapter during PostgreSQL-related operations.
    - Refer to the [Npgsql Documentation](https://www.npgsql.org/doc/) for details on specific exceptions.
 
-## Handling Exceptions
+# Handling Exceptions
 
 When handling exceptions in DbSyncKit, consider the following approach:
 

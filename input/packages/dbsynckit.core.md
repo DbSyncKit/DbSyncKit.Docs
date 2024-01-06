@@ -1,16 +1,14 @@
 ﻿﻿Title: DbSyncKit.Core
 Order: 1
 BreadcrumbTitle: DbSyncKit.Core
-NavigationTitle: DbSyncKit.Core
+NavigationTitle: Core
 ShowInSidebar: true
 Xref: packages/DbSyncKit.Core
 ---
 
-# DbSyncKit.Core
-
 DbSyncKit.Core is the fundamental package that provides core components and infrastructure for performing database synchronization operations. It includes essential classes, interfaces, and utilities to streamline synchronization tasks across various database providers.
 
-## Key Features
+# Key Features
 
 - **Synchronization Classes**: Contains classes like `Synchronization` that facilitate data synchronization between source and destination databases.
 
@@ -18,7 +16,7 @@ DbSyncKit.Core is the fundamental package that provides core components and infr
 
 - **Result Object**: The `Result<T>` class provides detailed information about the outcome of a synchronization operation, including added, edited, and deleted records.
 
-## Installation
+# Installation
 
 To install DbSyncKit.Core, use the following NuGet Package Manager command:
 
@@ -26,13 +24,13 @@ To install DbSyncKit.Core, use the following NuGet Package Manager command:
 dotnet add package DbSyncKit.Core
 ```
 
-## Documentation
+# Documentation
 
 Explore the detailed API documentation for DbSyncKit.Core to understand its classes, methods, and usage:
 
 - [DbSyncKit.Core API Documentation](xref:api-DbSyncKit.Core)
 
-## Dependencies
+# Dependencies
 
 DbSyncKit.Core may have dependencies on other packages. Ensure that you have the required dependencies installed.
 

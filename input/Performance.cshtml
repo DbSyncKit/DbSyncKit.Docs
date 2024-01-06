@@ -26,10 +26,11 @@ Xref: performance
 <body>
 
     <section class="py-5">
-        <h2>Performance Comparison - Package Versions: 0.2.x vs 0.3 vs 1.0.x</h2>
+        <h2>Performance Comparison</h2>
+        <h3>Package Versions: 0.2 vs 0.3 vs 1.0 vs 1.1</h3>
 
         <p>
-            This table demonstrates the mean execution time (in microseconds) comparison for each table between Package Version 0.2.x and the updated 0.3 release, alongside the latest 1.0.x version. The values represent the observed performance differences across these versions.
+            The following table presents a comparison of mean execution times (in microseconds) for each table across different package versions: 0.2, 0.3, 1.0, and the latest 1.1 release. The values illustrate the observed performance differences between these versions.
         </p>
 
         <div class="table-responsive">
@@ -37,9 +38,10 @@ Xref: performance
                 <thead class="thead-dark">
                     <tr>
                         <th>Table</th>
-                        <th>Mean 0.2</th>
-                        <th>Mean 0.3</th>
-                        <th>Mean 1.0.x </th>
+                        <th>Mean v0.2</th>
+                        <th>Mean v0.3</th>
+                        <th>Mean v1.0 </th>
+                        <th>Mean v1.1</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,66 +50,77 @@ Xref: performance
                         <td>403.85 &micro;s</td>
                         <td>300.564 &micro;s</td>
                         <td>114.036 &micro;s </td>
+                        <td>96.939 &micro;s </td>
                     </tr>
                     <tr>
                         <td>Artist</td>
                         <td>284.72 &micro;s</td>
                         <td>209.709 &micro;s</td>
                         <td>86.862 &micro;s </td>
+                        <td>76.872 &micro;s </td>
                     </tr>
                     <tr>
                         <td>Customer</td>
                         <td>219.93 &micro;s</td>
                         <td>115.595 &micro;s</td>
                         <td>41.809 &micro;s </td>
+                        <td>32.264 &micro;s </td>
                     </tr>
                     <tr>
                         <td>Employee</td>
                         <td>64.85 &micro;s</td>
                         <td>23.193 &micro;s</td>
                         <td>6.749 &micro;s </td>
+                        <td>6.552 &micro;s </td>
                     </tr>
                     <tr>
                         <td>Genre</td>
                         <td>44.13 &micro;s</td>
                         <td>28.123 &micro;s</td>
                         <td>12.807 &micro;s </td>
+                        <td>10.821 &micro;s </td>
                     </tr>
                     <tr>
                         <td>Invoice</td>
                         <td>869.78 &micro;s</td>
                         <td>543.679 &micro;s</td>
                         <td>163.092 &micro;s </td>
+                        <td>141.017 &micro;s </td>
                     </tr>
                     <tr>
                         <td>InvoiceLine</td>
                         <td>3,690.57 &micro;s</td>
                         <td>2,573.884 &micro;s</td>
                         <td>1,122.499 &micro;s </td>
+                        <td>917.182 &micro;s </td>
                     </tr>
                     <tr>
                         <td>MediaType</td>
                         <td>11.85 &micro;s</td>
                         <td>6.954 &micro;s</td>
                         <td>4.687 &micro;s </td>
+                        <td>4.180 &micro;s </td>
                     </tr>
                     <tr>
                         <td>Playlist</td>
                         <td>33.51 &micro;s</td>
                         <td>17.250 &micro;s</td>
                         <td>8.547 &micro;s </td>
+                        <td>7.875 &micro;s </td>
                     </tr>
                     <tr>
                         <td>PlaylistTrack</td>
                         <td>15,675.30 &micro;s</td>
                         <td>15,745.778 &micro;s</td>
                         <td>10,863.654 &micro;s </td>
+                        <td>9,968.597 &micro;s </td>
                     </tr>
                     <tr>
                         <td>Track</td>
                         <td>8,444.76 &micro;s</td>
                         <td>5,323.978 &micro;s</td>
                         <td>2,247.052 &micro;s </td>
+                        <td>1,750.159 &micro;s </td>
                     </tr>
                 </tbody>
             </table>
@@ -115,6 +128,7 @@ Xref: performance
         <div>
             <span>Note: 1 microsecond (&micro;s) is equal to 0.000001 seconds.</span>
         </div>
+        <br/>
         <div>
             <h3>Details of Benchmark Analysis</h3>
             <p>
@@ -134,17 +148,17 @@ Xref: performance
             <script>
                 // Sample data for different tables
                 const tableData = {
-                    'Album': [403.85, 300.564, 114.036],
-                    'Artist': [284.72, 209.709, 86.862],
-                    'Customer': [219.93, 115.595, 41.809],
-                    'Employee': [64.85, 23.193, 6.749],
-                    'Genre': [44.13, 28.123, 12.807],
-                    'Invoice': [869.78, 543.679, 163.092],
-                    'InvoiceLine': [3690.57, 2573.884, 1122.499],
-                    'MediaType': [11.85, 6.954, 4.687],
-                    'Playlist': [33.51, 17.25, 8.547],
-                    'PlaylistTrack': [15675.30, 15745.778, 10863.654],
-                    'Track': [8444.76, 5323.978, 2247.052]
+                    'Album': [403.85, 300.564, 114.036, 96.939],
+                    'Artist': [284.72, 209.709, 86.862, 76.872],
+                    'Customer': [219.93, 115.595, 41.809, 32.264],
+                    'Employee': [64.85, 23.193, 6.749, 6.552],
+                    'Genre': [44.13, 28.123, 12.807, 10.821],
+                    'Invoice': [869.78, 543.679, 163.092, 141.017],
+                    'InvoiceLine': [3690.57, 2573.884, 1122.499, 917.182],
+                    'MediaType': [11.85, 6.954, 4.687, 4.180],
+                    'Playlist': [33.51, 17.25, 8.547, 7.875],
+                    'PlaylistTrack': [15675.30, 15745.778, 10863.654, 9968.597],
+                    'Track': [8444.76, 5323.978, 2247.052, 1750.159]
                 };
 
                 // Loop through the table data to generate multiple charts
@@ -162,7 +176,7 @@ Xref: performance
                     document.querySelector('.graph-container').appendChild(canvasDiv);
 
                     const chartData = {
-                        labels: ['0.2', '0.3', '1.0.x'],
+                        labels: ['ver 0.2', 'ver 0.3', 'ver 1.0','ver 1.1'],
                         datasets: [
                             {
                                 label: tableName,
@@ -187,9 +201,12 @@ Xref: performance
                                 maxBarThickness: 50,
                             },
                             y: {
-                                stacked: true
+                                stacked: true,
+                                ticks: {
+                                    callback: (value) => value + ' µs'
+                                }
                             }
-                        }
+                        },
                     };
 
                     const chart = new Chart(ctx, {

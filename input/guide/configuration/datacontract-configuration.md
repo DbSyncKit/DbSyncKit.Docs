@@ -6,11 +6,9 @@ ShowInSidebar: true
 Xref: configuration/datacontract-configuration
 ---
 
-# DataContract Configuration
-
 To configure the actual data contract for entities, you can use attributes from the [DbSyncKit.DB.Attributes](xref:api-DbSyncKit.DB.Attributes) namespace. These attributes allow you to customize the behavior of synchronization for each table.
 
-## Available Attributes for Configuration:
+# Available Attributes for Configuration
 
 - [TableName](xref:api-DbSyncKit.DB.Attributes.TableNameAttribute): Specifies the name of the table.
 - [TableSchema](xref:api-DbSyncKit.DB.Attributes.TableSchemaAttribute): Specifies the schema of the table.
@@ -25,29 +23,27 @@ To configure the actual data contract for entities, you can use attributes from 
     - [GenerateWithID](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.GenerateWithID): Determines whether the ID property should be included in the insert query generation. Possible values are `true` (to include the ID property) or `false` (to exclude the ID property).
     - [IncludeIdentityInsert](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.IncludeIdentityInsert): Indicates whether to include database-specific SQL statements during insert query generation affecting identity insert behavior. The default value is `true`.
 
-## DataContractUtility for Customized Entity Operations
+# IDataContractComparer for Identification
 
-The [`DataContractUtility`](xref:api-DbSyncKit.DB.Utils.DataContractUtility-T-) class serves as a generic utility for working with data contract classes. This utility class is designed to be inherited by specific data contract classes and provides functionality for hash code calculation, string representation generation, and equality checks, allowing customization of default methods like `Equals` and `ToString`.
+The [`IDataContractComparer`](xref:api-DbSyncKit.DB.Interface.IDataContractComparer) interface serves as an identification marker for data contract classes. This interface doesn't include any properties but signifies a specific contract for identification purposes.
 
-### Note:
-It is important to inherit [DataContractUtility](xref:api-DbSyncKit.DB.Utils.DataContractUtility-T-) in the contract or you many need to define your own logic for `equals` and `tostring`
 
-## Entity Configuration Examples
+# Entity Configuration Examples
 
 Here are some examples showcasing the use of attributes for configuring data contracts within DbSyncKit.
 
 ---
-### Example 1 (Album):
+## Example 1 (Album)
 
 To configure entities for example `Album` entity, apply attributes from the [DbSyncKit.DB.Attributes](xref:api-DbSyncKit.DB.Attributes) namespace to the entity class.
 
 ```csharp
 using DbSyncKit.DB.Attributes;
 using DbSyncKit.DB.Extensions;
-using DbSyncKit.DB.Utils;
+using DbSyncKit.DB.Interface;
 
 [TableName("Album")]
-public class Album : DataContractUtility<Album>
+public class Album : IDataContractComparer
 {
     [KeyProperty(IsPrimaryKey: true)]
     public int AlbumId { get; set; }
@@ -62,14 +58,14 @@ public class Album : DataContractUtility<Album>
 ```
 ---
 
-### Example 2:
+## Example 2
 
 The `SampleEntity` entity demonstrates the use of various attributes for a more complex scenario.
 
 ```csharp
 
 [TableName("SampleEntity"), TableSchema("dbo")]
-public class SampleEntity : DataContractUtility<SampleEntity>
+public class SampleEntity : IDataContractComparer
 {
     [KeyProperty(IsPrimaryKey: true),ExcludedProperty]
     public long ID { get; set; }
@@ -104,19 +100,19 @@ The `VersionNo` property is marked with the [`[ExcludedProperty]`](xref:api-DbSy
 
 The `VersionNo` property might represent a versioning mechanism or a form of row version tracking in some database scenarios. However, in MSSQL databases, the row versioning might be handled differently, and the `VersionNo` property is not required for synchronization purposes. Therefore, excluding `VersionNo` ensures that the DbSyncKit library operates efficiently with MSSQL databases, focusing on the essential key properties (`HeaderID` and `EnumValue`) to identify and compare rows without considering the version-specific information.
 
-#### Note:
+### Note:
 This exclusion aligns with the MSSQL-specific considerations for synchronization, where certain properties, like `VersionNo`, may not play a role in determining row changes or uniqueness across different MSSQL instances.
 
 ---
 
-### Example 3:
+## Example 3
 
 In the `SampleEntity` entity, the scenario involves a table where the `ID` property is designated as a primary key but is not set as an identity or auto-incrementing column. This requires the addition of the [`[GenerateInsertWithID(includeIdentityInsert: false)]`](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute) attribute to control the inclusion of the `ID` property in the insert query generation. By setting `includeIdentityInsert` to `false`, it signifies that the ID values won't be automatically generated by the database, and the application needs to handle the assignment of `ID` values during insert operations.
 
 ```csharp
 
 [TableName("SampleEntity"), TableSchema("dbo"), GenerateInsertWithID(includeIdentityInsert: false)]
-public class SampleEntity : DataContractUtility<SampleEntity>
+public class SampleEntity : IDataContractComparer
 {
     [KeyProperty(IsPrimaryKey: true)]
     public long ID { get; set; }

@@ -6,17 +6,15 @@ ShowInSidebar: true
 Xref: packages/dbsynckit.templates
 ---
 
-# DbSyncKit.Templates Implementation
-
 Welcome to the documentation for the implementation details of [`DbSyncKit.Templates`](xref:api-DbSyncKit.Templates) across different databases.
 
-## Supported Databases
+# Supported Databases
 
 - [MSSQL](xref:api-DbSyncKit.Templates.MSSQL)
 - [MySQL](xref:api-DbSyncKit.Templates.MySql)
 - [PostgreSQL](xref:api-DbSyncKit.Templates.PostgreSQL)
 
-## QueryTemplates Class
+# QueryTemplates Class
 
 The `QueryTemplates` class, part of the [`DbSyncKit.Templates`](xref:api-DbSyncKit.Templates) package, provides convenient SQL query templates. It is implemented in separate namespaces for each database:
 
@@ -24,7 +22,7 @@ The `QueryTemplates` class, part of the [`DbSyncKit.Templates`](xref:api-DbSyncK
 - [`DbSyncKit.Templates.MySql`](xref:api-DbSyncKit.Templates.MySql)
 - [`DbSyncKit.Templates.PostgreSQL`](xref:api-DbSyncKit.Templates.PostgreSQL)
 
-### Key Features
+## Key Features
 
 - **Query Templates**: SELECT, INSERT, UPDATE, DELETE, and COMMENT queries.
 - **Lazy Initialization**: Efficiently generates templates only when needed.

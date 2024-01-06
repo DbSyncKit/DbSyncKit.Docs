@@ -1,16 +1,14 @@
 ﻿﻿Title: Cross-Database Migration
-Order: 4
+Order: 5
 BreadcrumbTitle: Cross-Database Migration
 NavigationTitle: Cross-Database Migration
 ShowInSidebar: true
 Xref: usage/cross-database-migration
 ---
 
-# Cross-Database Migration with DbSyncKit
-
 DbSyncKit allows you to perform cross-database migration, syncing data between different database providers. In this guide, we'll walk through a basic example of migrating data from MySQL to MSSQL.
 
-## Setup
+# Setup
 
 Let's start by setting up the necessary variables
 
@@ -21,7 +19,7 @@ IDatabase Destination = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB"
 Synchronization Sync = new Synchronization();
 ```
 
-## Perform Cross-Database Migration
+# Perform Cross-Database Migration
 
 Now that we have the variables set up, let's perform the cross-database migration. Replace `YourEntity` with the appropriate entity you want to synchronize.
 
@@ -32,7 +30,9 @@ Result<YourEntity> migrationResult = Sync.SyncData<YourEntity>(Source, Destinati
 
 The migration result provides detailed information about added, edited, and deleted records, along with the change type and data counts.
 
-## Generate SQL Query
+For a more in-depth understanding of the synchronization process, including setup and interpreting the synchronization result, please refer to the [Basic Synchronization](xref:usage/basic-synchronization) guide.
+
+# Generate SQL Query
 
 To generate the SQL query corresponding to the migration, use the following code:
 
@@ -42,7 +42,7 @@ var query = Sync.GetSqlQueryForSyncData(migrationResult);
 ```
 
 
-### Importatant:
+### Importatant
 
 Please note that **SQL queries generated** will be based on the **destination [IDatabase](xref:api-DbSyncKit.DB.Interface.IDatabase)** or [**IQueryGenerator**](xref:api-DbSyncKit.DB.Interface.IQueryGenerator) provided to the [Synchronization](xref:api-DbSyncKit.Core.Synchronization) instance
 

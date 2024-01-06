@@ -2,15 +2,13 @@
 Order: 2
 BreadcrumbTitle: DI Setup
 NavigationTitle: DI Setup
-ShowInSidebar: true
+ShowInSidebar: false
 Xref: configuration/di-setup
 ---
 
-# Dependency Injection (DI) Setup
-
 DbSyncKit can be configured using Dependency Injection (DI) to manage the application's services more efficiently. This guide outlines the steps to set up DbSyncKit with DI in your application.
 
-## Note:
+# Note
 
 This portion is still in development for now check the [manual class implementation](xref:configuration/manual-setup)
 
