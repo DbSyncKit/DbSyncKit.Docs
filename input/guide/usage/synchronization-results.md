@@ -43,9 +43,10 @@ Here's an example of how to use the synchronization result:
 Result<YourEntity> syncResult = Sync.SyncData<YourEntity>(SourceDatabase, DestinationDatabase);
 
 // Accessing synchronization result properties & getting its count
-Console.WriteLine($"Added: {syncResult.Added.Count} Deleted: {syncResult.Deleted.Count}");
+Console.WriteLine($"Added: {data.Added.Count} EditedDetailed: {data.EditedDetailed.Count} Deleted: {data.Deleted.Count}");
 Console.WriteLine($"Total Source Data: {syncResult.SourceDataCount}");
 Console.WriteLine($"Total Destination Data: {syncResult.DestinaionDataCount}");
+Console.WriteLine($"Change Type: {syncResult.ResultChangeType}");
 ```
 
 Understanding the synchronization result is crucial for analyzing the impact of the synchronization operation and making informed decisions based on the changes detected.

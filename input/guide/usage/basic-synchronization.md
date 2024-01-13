@@ -54,16 +54,20 @@ The setup step involves initializing variables and configurations necessary for 
 
 **Code Example:**
 ```csharp
-List<string> excludedProperty = Sync.GetExcludedColumns<T>();
-List<string> columnList = Sync.GetAllColumns<T>().Except(excludedProperty).ToList();
-PropertyInfo[] comparableProperties = Sync.GetComparableProperties<T>();
-PropertyInfo[] keyProperties = Sync.GetKeyProperties<T>();
+List<string> excludedProperty = Sync.GetExcludedColumns<YourEntity>();
+List<string> columnList = Sync.GetAllColumns<YourEntity>().Except(excludedProperty).ToList();
+PropertyInfo[] comparableProperties = Sync.GetComparableProperties<YourEntity>();
+PropertyInfo[] keyProperties = Sync.GetKeyProperties<YourEntity>();
     
-// Create key equality comparer
-object keyEqualityComparer = new PropertyEqualityComparer<T>(keyProperties);
+// Create equality comparers
+object keyEqualityComparer = new PropertyEqualityComparer<YourEntity>(keyProperties);
+object ComparablePropertiesComparer = new PropertyEqualityComparer<YourEntity>(comparableProperties);
     
 // Get the table name
-string tableName = Sync.GetTableName<T>();
+string tableName = Sync.GetTableName<YourEntity>();
+
+// Result
+Result<T> result;
 ```
 
 ## 2) Getting Data
@@ -73,7 +77,7 @@ In this step, data is retrieved from source and destination databases.
 **Code Example:**
 ```csharp
 // Use the synchronization instance to retrieve data
-Sync.RetrieveDataFromDatabases<T>(source, destination, tableName, columnList, (PropertyEqualityComparer<T>)keyEqualityComparer, out HashSet<T> sourceList, out HashSet<T> destinationList);
+Sync.ContractFetcher.RetrieveDataFromDatabases<YourEntity>(Source, Destination, tableName, columnList, (PropertyEqualityComparer<T>)ComparablePropertiesComparer, out HashSet<T> SourceList, out HashSet<T> DestinationList);
 ```
 
 ## 3) Comparison
@@ -83,7 +87,7 @@ This step involves comparing the data from the source and destination databases.
 **Code Example:**
 ```csharp
 // Use the synchronization instance to get differences
-Result<T> result = Sync.GetDifferences<T>(sourceList, destinationList, (PropertyEqualityComparer<T>)keyEqualityComparer, comparableProperties);
+result = Sync.MismatchIdentifier.GetDifferences<YourEntity>(sourceList, destinationList, (PropertyEqualityComparer<T>)keyEqualityComparer, (PropertyEqualityComparer<T>)ComparablePropertiesComparer);
 ```
 
 ## 4) Generating SQL Queries
@@ -92,7 +96,7 @@ This step generates SQL queries for synchronization based on the identified diff
 
 **Code Example:**
 ```csharp
-Sync.GetSqlQueryForSyncData<T>(result);
+Sync.QueryBuilder.GetSqlQueryForSyncData<YourEntity>(syncResult,Sync.ContractFetcher.DestinationQueryGenerationManager);
 ```
 
 ## 5) Cleanup
@@ -101,7 +105,7 @@ This step involves cleaning up resources or performing any necessary cleanup ope
 
 **Code Example:**
 ```csharp
-CacheManager.DisposeType(typeof(T));
+DbSyncKit.DB.Manager.CacheManager.DisposeType(typeof(YourEntity));
 ```
 
 

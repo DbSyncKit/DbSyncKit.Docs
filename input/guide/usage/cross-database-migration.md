@@ -38,12 +38,14 @@ To generate the SQL query corresponding to the migration, use the following code
 
 ```csharp
 // Generate SQL Query for Cross-Database Migration
-var query = Sync.GetSqlQueryForSyncData(migrationResult);
+var query = Sync.QueryBuilder.GetSqlQueryForSyncData(migrationResult,Sync.ContractFetcher.DestinationQueryGenerationManager);
 ```
 
 
 ### Importatant
 
-Please note that **SQL queries generated** will be based on the **destination [IDatabase](xref:api-DbSyncKit.DB.Interface.IDatabase)** or [**IQueryGenerator**](xref:api-DbSyncKit.DB.Interface.IQueryGenerator) provided to the [Synchronization](xref:api-DbSyncKit.Core.Synchronization) instance
+Please note that **SQL queries generated** should be based on the **destination [IDatabase](xref:api-DbSyncKit.DB.Interface.IDatabase)** or [**IQueryGenerator**](xref:api-DbSyncKit.DB.Interface.IQueryGenerator) Instance.
+
+For instance, when fetching data for synchronization using the [DataContractFetcher](xref:api-DbSyncKit.Core.Fetcher.DataContractFetcher) from the [Synchronization](xref:api-DbSyncKit.Core.Synchronization) instance, you can leverage the **IQueryGenerator** instance obtained during the data retrieval process.
 
 Proceed to the [Usage Guide](xref:usage) for more comprehensive guidance on using DbSyncKit with different scenarios.

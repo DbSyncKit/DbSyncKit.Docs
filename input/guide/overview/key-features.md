@@ -23,11 +23,22 @@ DbSyncKit offers a comprehensive toolset to address a wide range of synchronizat
 
 ## 3.1 Core Functionality
 
-The core functionality of DbSyncKit provides a solid foundation for your synchronization tasks. It includes essential features and utilities that ensure the smooth operation of the synchronization process.
+The core functionality of DbSyncKit, provided by [DbSyncKit.Core](xref:packages/dbsynckit.core), offers a solid foundation for your synchronization tasks. It includes essential features and utilities that ensure the smooth operation of the synchronization process. The core package serves as the backbone for DbSyncKit, enabling seamless interaction with various database environments.
 
 ## 3.2 Database Provider Packages
 
 For users working with [Microsoft SQL Server](xref:packages/dbsynckit.mssql), [MySQL](xref:packages/dbsynckit.mysql), or [PostgreSQL](xref:packages/dbsynckit.postgresql), DbSyncKit offers specialized packages tailored to the unique requirements of these database platforms. These packages provide additional functionalities and optimizations to enhance the synchronization experience.
+
+## 3.3 Templating
+
+DbSyncKit introduces a Templating feature to streamline and simplify the synchronization process. The Templating package, [DbSyncKit.Templates](xref:packages/dbsynckit.templates), allows you to customize synchronization workflows and generate templates for various database environments.
+
+### 3.3.1 Templating Implementations
+
+- [DbSyncKit.Templates.MSSQL](xref:packages/dbsynckit.templates.mssql)
+- [DbSyncKit.Templates.MySQL](xref:packages/dbsynckit.templates.mysql)
+- [DbSyncKit.Templates.PostgreSQL](xref:packages/dbsynckit.templates.postgresql)
+
 
 # Next Steps
 

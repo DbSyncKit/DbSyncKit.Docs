@@ -14,14 +14,21 @@ DbSyncKit can be configured manually without using Dependency Injection (DI). Th
 API Reference: [QueryGenerator](xref:api-DbSyncKit.MSSQL.QueryGenerator)
 
 ```csharp
-IQueryGenerator queryGenerator = new QueryGenerator();
+IQueryGenerator queryGenerator = new DbSyncKit.MSSQL.QueryGenerator();
 ```
 
 ## For MySQL
 API Reference: [QueryGenerator](xref:api-DbSyncKit.MySQL.QueryGenerator)
 
 ```csharp
-IQueryGenerator queryGenerator = new QueryGenerator();
+IQueryGenerator queryGenerator = new DbSyncKit.MySQL.QueryGenerator();
+```
+
+## For PostgreSQL
+API Reference: [QueryGenerator](xref:api-DbSyncKit.PostgreSQL.QueryGenerator)
+
+```csharp
+IQueryGenerator queryGenerator = new DbSyncKit.PostgreSQL.QueryGenerator();
 ```
 
 # 2. Synchronization Setup
@@ -35,14 +42,6 @@ API Reference: [Synchronization](xref:api-DbSyncKit.Core.Synchronization)
 Synchronization Sync = new Synchronization();
 ```
 
-Or With QueryGenerator
-
-```csharp
-Synchronization Sync = new Synchronization(destinationQueryGenerator);
-```
-
-Where `destinationQueryGenerator` is an instance of [`IQueryGenerator`](xref:api-DbSyncKit.DB.Interface.IQueryGenerator)
-
 # 3. Database Configuration
 
 Configure your source and destination databases using DbSyncKit's [IDatabase](xref:api-DbSyncKit.DB.Interface.IDatabase) interface.
@@ -51,16 +50,24 @@ Configure your source and destination databases using DbSyncKit's [IDatabase](xr
  Api Ref: [Connection](xref:api-DbSyncKit.MSSQL.Connection)
 ```csharp
 // MSSQL manual database configuration
-IDatabase SourceDatabase = new Connection("(localdb)\\MSSQLLocalDB", "SourceChinook", true);
-IDatabase DestinationDatabase = new Connection("(localdb)\\MSSQLLocalDB", "DestinationChinook", true);
+IDatabase SourceDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", "SourceChinook", true);
+IDatabase DestinationDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", "DestinationChinook", true);
 ```
 
 ## For MySQL
 Api Ref: [Connection](xref:api-DbSyncKit.MySQL.Connection)
 ```csharp
 // MySQL manual database configuration
-IDatabase SourceDatabase = new Connection("localhost", 3306, "SourceChinook", "root", "");
-IDatabase DestinationDatabase = new Connection("localhost", 3306, "DestinationChinook", "root", "");
+IDatabase SourceDatabase = new DbSyncKit.MySQL.Connection("localhost", 3306, "SourceChinook", "root", "");
+IDatabase DestinationDatabase = new DbSyncKit.MySQL.Connection("localhost", 3306, "DestinationChinook", "root", "");
+```
+
+## For PostgreSQL
+Api Ref: [Connection](xref:api-DbSyncKit.PostgreSQL.Connection)
+```csharp
+// MySQL manual database configuration
+IDatabase SourceDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "sourceChinook", "postgres", "");
+IDatabase DestinationDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "destinationChinook", "postgres", "");
 ```
 
 Replace connection strings and other details according to your actual configurations.

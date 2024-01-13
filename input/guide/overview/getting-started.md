@@ -25,6 +25,14 @@ Choose the appropriate package based on the database system you are working with
 - For MySQL: [DbSyncKit.MySQL](xref:packages/dbsynckit.mysql)
 - For PostgreSQL: [DbSyncKit.PostgreSQL](xref:packages/dbsynckit.postgresql)
 
+## Templating Packages
+
+Enhance your synchronization workflows with the Templating feature. Install the Templating package along with database-specific Templating implementations:
+
+- [DbSyncKit.Templates](xref:packages/dbsynckit.templates)
+- For Microsoft SQL Server: [DbSyncKit.Templates.MSSQL](xref:packages/dbsynckit.templates.mssql)
+- For MySQL: [DbSyncKit.Templates.MySQL](xref:packages/dbsynckit.templates.mysql)
+- For PostgreSQL: [DbSyncKit.Templates.PostgreSQL](xref:packages/dbsynckit.templates.postgresql)
 
 Install these packages using your preferred package manager. For example, using NuGet:
 
@@ -34,6 +42,10 @@ dotnet add package DbSyncKit.DB
 dotnet add package DbSyncKit.MSSQL
 dotnet add package DbSyncKit.MySQL
 dotnet add package DbSyncKit.PostgreSQL
+dotnet add package DbSyncKit.Templates
+dotnet add package DbSyncKit.Templates.MSSQL
+dotnet add package DbSyncKit.Templates.MySQL
+dotnet add package DbSyncKit.Templates.PostgreSQL
 ```
 
 Ensure your project is configured to use these packages.
@@ -47,4 +59,3 @@ Once you have installed the required packages, proceed with the initial setup. C
 Explore the [Usage Guide](xref:usage) for detailed information on utilizing DbSyncKit for various synchronization tasks. This guide covers topics such as basic synchronization, entity configuration, attribute configuration, and more.
 
 Ready to dive in? Start by installing the necessary packages and configuring DbSyncKit for your project!
-

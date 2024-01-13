@@ -17,20 +17,20 @@ Before generating SQL queries, ensure that you have:
 
 # Generate SQL Queries
 
-Once you have the synchronization result, you can generate SQL queries using the [`GetSqlQueryForSyncData`](xref:api-DbSyncKit.Core.Synchronization.GetSqlQueryForSyncData-T-(DbSyncKit.Core.DataContract.Result-T-,System.Int32)) method. Replace `YourEntity` with the appropriate entity type.
+Once you have the synchronization result, you can generate SQL queries using the [`GetSqlQueryForSyncData`](xref:api-DbSyncKit.Core.SqlBuilder.QueryBuilder.GetSqlQueryForSyncData-T-(DbSyncKit.Core.DataContract.Result-T-,DbSyncKit.DB.Interface.IQueryGenerator,System.Int32)) method. Replace `YourEntity` with the appropriate entity type.
 
 ```csharp
 // Perform synchronization
 Result<YourEntity> syncResult = Sync.SyncData<YourEntity>(SourceDatabase, DestinationDatabase);
 
 // Generate SQL queries
-string sqlQueries = Sync.GetSqlQueryForSyncData<YourEntity>(syncResult);
+string sqlQueries = Sync.QueryBuilder.GetSqlQueryForSyncData<YourEntity>(syncResult,Sync.ContractFetcher.DestinationQueryGenerationManager);
 
 Console.WriteLine(sqlQueries);
 
 ```
 
-The [`GetSqlQueryForSyncData`](xref:api-DbSyncKit.Core.Synchronization.GetSqlQueryForSyncData-T-(DbSyncKit.Core.DataContract.Result-T-,System.Int32)) method takes the synchronization result as input and returns a list of SQL queries corresponding to the changes detected during synchronization.
+The [`GetSqlQueryForSyncData`](xref:api-DbSyncKit.Core.SqlBuilder.QueryBuilder.GetSqlQueryForSyncData-T-(DbSyncKit.Core.DataContract.Result-T-,DbSyncKit.DB.Interface.IQueryGenerator,System.Int32)) method takes the synchronization result as input and returns a list of SQL queries corresponding to the changes detected during synchronization.
 
 # Understanding Generated SQL Queries
 

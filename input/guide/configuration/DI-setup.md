@@ -1,60 +1,77 @@
-﻿﻿Title: Dependency Injection Setup
+﻿Title: Dependency Injection
 Order: 2
 BreadcrumbTitle: DI Setup
 NavigationTitle: DI Setup
-ShowInSidebar: false
 Xref: configuration/di-setup
 ---
 
 DbSyncKit can be configured using Dependency Injection (DI) to manage the application's services more efficiently. This guide outlines the steps to set up DbSyncKit with DI in your application.
 
-# Note
+# 1. Add DbSyncKit Services
 
-This portion is still in development for now check the [manual class implementation](xref:configuration/manual-setup)
+To configure DbSyncKit with Dependency Injection, add the necessary services to your DI container.
 
-<!---
-
-## 1. Service Registration
-
-The first step is to register the necessary services in your application's DI container. Add the following registrations to your DI setup:
+API Reference: [SynchronizationServiceCollectionExtensions](xref:api-DbSyncKit.Core.Extensions.SynchronizationServiceCollectionExtensions)
 
 ```csharp
-// Add DbSyncKit services
-services.AddScoped<Synchronization>();
-services.AddScoped<IQueryGenerator, YourQueryGeneratorImplementation>();
-services.AddScoped<IDatabase, YourDatabaseConnectionImplementation>();
-// Add other services as needed
+services.AddSynchronizationServices();
 ```
 
-Ensure you replace `YourQueryGeneratorImplementation` and `YourDatabaseConnectionImplementation` with your actual implementations.
+This method adds the required DbSyncKit services to the IServiceCollection.
 
-## 2. Database Configuration
+# 2. Inject Synchronization
 
-Configure your source and destination databases using DbSyncKit's `IDatabase` interface. Here's an example using MSSQL:
+Once the services are added, you can inject the `Synchronization` class into your application components.
+
+API Reference: [Synchronization](xref:api-DbSyncKit.Core.Synchronization)
 
 ```csharp
-// Configure source and destination databases
-IDatabase sourceDatabase = new YourDatabaseConnectionImplementation("source_connection_string");
-IDatabase destinationDatabase = new YourDatabaseConnectionImplementation("destination_connection_string");
+public class YourService
+{
+    private readonly Synchronization _sync;
+
+    public YourService(Synchronization sync)
+    {
+        _sync = sync;
+    }
+
+    // Use _sync for synchronization tasks
+}
 ```
 
-Replace `"source_connection_string"` and `"destination_connection_string"` with your actual connection strings.
+Now, you can use the injected `Synchronization` instance in your services to perform synchronization tasks.
 
-## 3. Synchronization Setup
+# 3. Database Configuration
 
-Finally, set up the synchronization process by injecting the configured services into your application components.
+Configure your source and destination databases using DbSyncKit's [IDatabase](xref:api-DbSyncKit.DB.Interface.IDatabase) interface.
 
+## For MSSQL
+ Api Ref: [Connection](xref:api-DbSyncKit.MSSQL.Connection)
 ```csharp
-// Example of setting up synchronization
-ISynchronization synchronization = new Synchronization(
-    serviceProvider.GetService<IQueryGenerator>(),
-    sourceDatabase,
-    destinationDatabase
-);
+// MSSQL manual database configuration
+IDatabase SourceDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", "SourceChinook", true);
+IDatabase DestinationDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", "DestinationChinook", true);
 ```
 
-Now you have DbSyncKit configured with Dependency Injection in your application.
+## For MySQL
+Api Ref: [Connection](xref:api-DbSyncKit.MySQL.Connection)
+```csharp
+// MySQL manual database configuration
+IDatabase SourceDatabase = new DbSyncKit.MySQL.Connection("localhost", 3306, "SourceChinook", "root", "");
+IDatabase DestinationDatabase = new DbSyncKit.MySQL.Connection("localhost", 3306, "DestinationChinook", "root", "");
+```
 
-Proceed to the [Usage Guide](xref:usage) to learn how to perform synchronization tasks with DbSyncKit.
+## For PostgreSQL
+Api Ref: [Connection](xref:api-DbSyncKit.PostgreSQL.Connection)
+```csharp
+// MySQL manual database configuration
+IDatabase SourceDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "sourceChinook", "postgres", "");
+IDatabase DestinationDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "destinationChinook", "postgres", "");
+```
 
--->
+Replace connection strings and other details according to your actual configurations.
+
+
+# Next Steps
+
+You have now successfully set up DbSyncKit with Dependency Injection. Proceed to the [Usage Guide](xref:usage) to learn how to perform synchronization tasks with DbSyncKit.

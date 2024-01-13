@@ -15,6 +15,7 @@ To configure the actual data contract for entities, you can use attributes from 
 - [KeyProperty](xref:api-DbSyncKit.DB.Attributes.KeyPropertyAttribute): Defines a property as a key property.
     - [KeyProperty](xref:api-DbSyncKit.DB.Attributes.KeyPropertyAttribute.KeyProperty): Indicates whether the property should be considered as a key property. Default is `true`.
     - [IsPrimaryKey](xref:api-DbSyncKit.DB.Attributes.KeyPropertyAttribute.IsPrimaryKey): Indicates whether the property is a primary key. Default is `false`.
+    - [IsComparable](xref:api-DbSyncKit.DB.Attributes.KeyPropertyAttribute.IsComparable): Indicates whether the property should be considered during the comparison process. Default is `false`.
 
 - [ExcludedProperty](xref:api-DbSyncKit.DB.Attributes.ExcludedPropertyAttribute): Excludes a property from specific operations.
     - [Excluded](xref:api-DbSyncKit.DB.Attributes.ExcludedPropertyAttribute.Excluded): Indicates whether the property should be excluded from operations. Default is `true`.
@@ -23,9 +24,9 @@ To configure the actual data contract for entities, you can use attributes from 
     - [GenerateWithID](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.GenerateWithID): Determines whether the ID property should be included in the insert query generation. Possible values are `true` (to include the ID property) or `false` (to exclude the ID property).
     - [IncludeIdentityInsert](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.IncludeIdentityInsert): Indicates whether to include database-specific SQL statements during insert query generation affecting identity insert behavior. The default value is `true`.
 
-# IDataContractComparer for Identification
+# IDataContract for Identification
 
-The [`IDataContractComparer`](xref:api-DbSyncKit.DB.Interface.IDataContractComparer) interface serves as an identification marker for data contract classes. This interface doesn't include any properties but signifies a specific contract for identification purposes.
+The [`IDataContract`](xref:api-DbSyncKit.DB.Interface.IDataContract) interface serves as an identification marker for data contract classes. This interface doesn't include any properties but signifies a specific contract for identification purposes.
 
 
 # Entity Configuration Examples
@@ -43,7 +44,7 @@ using DbSyncKit.DB.Extensions;
 using DbSyncKit.DB.Interface;
 
 [TableName("Album")]
-public class Album : IDataContractComparer
+public class Album : IDataContract
 {
     [KeyProperty(IsPrimaryKey: true)]
     public int AlbumId { get; set; }
@@ -63,11 +64,10 @@ public class Album : IDataContractComparer
 The `SampleEntity` entity demonstrates the use of various attributes for a more complex scenario.
 
 ```csharp
-
 [TableName("SampleEntity"), TableSchema("dbo")]
-public class SampleEntity : IDataContractComparer
+public class SampleEntity : IDataContract
 {
-    [KeyProperty(IsPrimaryKey: true),ExcludedProperty]
+    [KeyProperty(IsPrimaryKey: true), ExcludedProperty]
     public long ID { get; set; }
 
     [KeyProperty]
@@ -81,7 +81,6 @@ public class SampleEntity : IDataContractComparer
     [ExcludedProperty]
     public byte[] VersionNo { get; set; }
 
-
     public SampleEntity(DataRow sampleEntity)
     {
         // Initialization code for Entity properties from DataRow
@@ -94,7 +93,6 @@ In the provided example (`SampleEntity` entity), the `ID` property is marked wit
 In database tables, the concept of a primary key is crucial for uniquely identifying each row. In the context of the `SampleEntity` table, the properties `HeaderID` and `EnumValue` are designated as key properties using the `[KeyProperty]` attribute. These key properties serve as the main identifiers for individual rows in the table, allowing the system to distinguish one record from another.
 
 Therefore, by excluding the `ID` property and emphasizing the `HeaderID` and `EnumValue` properties as key properties, the example communicates that the uniqueness and identification of rows in the `SampleEntity` table are achieved through the combination of `HeaderID` and `EnumValue`. The `ID` property, while present in the table, is intentionally excluded from certain operations, reflecting the specific needs and requirements of the data synchronization process for this entity.
-
 
 The `VersionNo` property is marked with the [`[ExcludedProperty]`](xref:api-DbSyncKit.DB.Attributes.ExcludedPropertyAttribute) attribute, indicating that this property should be excluded from certain operations, especially in the context of Microsoft SQL Server (MSSQL). The decision to exclude `VersionNo` is specific to MSSQL synchronization requirements.
 
@@ -112,7 +110,7 @@ In the `SampleEntity` entity, the scenario involves a table where the `ID` prope
 ```csharp
 
 [TableName("SampleEntity"), TableSchema("dbo"), GenerateInsertWithID(includeIdentityInsert: false)]
-public class SampleEntity : IDataContractComparer
+public class SampleEntity : IDataContract
 {
     [KeyProperty(IsPrimaryKey: true)]
     public long ID { get; set; }
@@ -131,8 +129,53 @@ public class SampleEntity : IDataContractComparer
 
 This configuration provides the necessary flexibility for managing primary key values manually in scenarios where the database does not handle automatic ID generation.
 
-here the output for the MSSQL Query Generation wont include below statements:
-```sql
-SET IDENTITY_INSERT dbo.SampleEntity ON
-SET IDENTITY_INSERT dbo.SampleEntity OFF
+---
+
+## Example 4 ( pivot )
+
+In the `PlaylistTrack` entity, the scenario involves key properties that need to be compared during synchronization. The `IsComparable` property in the [`[KeyProperty]`](xref:api-DbSyncKit.DB.Attributes.KeyPropertyAttribute) attribute is set to `true` for both `PlaylistId` and `TrackId`.
+
+```csharp
+using DbSyncKit.DB.Attributes;
+using DbSyncKit.DB.Extensions;
+using DbSyncKit.DB.Interface;
+using System.Data;
+
+[TableName("PlaylistTrack")]
+public class PlaylistTrack : IDataContract
+{
+    [KeyProperty(isPrimaryKey: true, isComparable: true)]
+    public int PlaylistId { get; set; }
+
+    [KeyProperty(isPrimaryKey: true, isComparable: true)]
+    public int TrackId { get; set; }
+
+    public PlaylistTrack(DataRow playlistTrackInfo)
+    {
+        if (playlistTrackInfo == null)
+            throw new ArgumentNullException(nameof(playlistTrackInfo));
+
+        PlaylistId = playlistTrackInfo.GetValue<int>("PlaylistId");
+        TrackId = playlistTrackInfo.GetValue<int>("TrackId");
+    }
+}
 ```
+
+In this example, the `IsComparable` property is set to `true` for both `PlaylistId` and `TrackId` properties, indicating that these key properties should be considered during the comparison process. This ensures that changes in these properties are taken into account during synchronization operations, providing a more granular control over which properties contribute to the detection of differences between rows. This configuration is especially relevant in scenarios like pivot tables, where key properties not only uniquely identify records but also contribute to the data that needs to be compared across different database instances.
+
+It's important to note that if a key property is excluded from comparison (which is the default behavior for key properties), setting `isComparable: true` becomes necessary to include this property in data comparison during synchronization.
+
+---
+
+# Next Steps
+
+Ready to implement data contract configurations in your DbSyncKit project? Continue exploring other guides and documentation to enhance your database synchronization workflow.
+
+Explore the individual packages within DbSyncKit to understand their functionalities and choose the ones that suit your specific database environment:
+
+- [DbSyncKit.Core](xref:packages/dbsynckit.core)
+- [DbSyncKit.DB](xref:packages/dbsynckit.db)
+- [DbSyncKit.MSSQL](xref:packages/dbsynckit.mssql)
+- [DbSyncKit.MySQL](xref:packages/dbsynckit.mysql)
+- [DbSyncKit.PostgreSQL](xref:packages/dbsynckit.postgresql)
+- [DbSyncKit.Templates](xref:packages/dbsynckit.templates)
