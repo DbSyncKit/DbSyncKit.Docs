@@ -24,10 +24,6 @@ To configure the actual data contract for entities, you can use attributes from 
     - [GenerateWithID](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.GenerateWithID): Determines whether the ID property should be included in the insert query generation. Possible values are `true` (to include the ID property) or `false` (to exclude the ID property).
     - [IncludeIdentityInsert](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.IncludeIdentityInsert): Indicates whether to include database-specific SQL statements during insert query generation affecting identity insert behavior. The default value is `true`.
 
-# IDataContract for Identification
-
-The [`IDataContract`](xref:api-DbSyncKit.DB.Interface.IDataContract) interface serves as an identification marker for data contract classes. This interface doesn't include any properties but signifies a specific contract for identification purposes.
-
 
 # Entity Configuration Examples
 
