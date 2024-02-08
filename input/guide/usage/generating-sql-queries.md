@@ -20,8 +20,15 @@ Before generating SQL queries, ensure that you have:
 Once you have the synchronization result, you can generate SQL queries using the [`GetSqlQueryForSyncData`](xref:api-DbSyncKit.Core.SqlBuilder.QueryBuilder.GetSqlQueryForSyncData-T-(DbSyncKit.Core.DataContract.Result-T-,DbSyncKit.DB.Interface.IQueryGenerator,System.Int32)) method. Replace `YourEntity` with the appropriate entity type.
 
 ```csharp
+// A method to filter out the result data before creating a hashset (optional or you can pass null instead)
+private List<YourEntity> FilterData(List<T> data)
+{
+    // filter your data here
+    return data;
+}
+
 // Perform synchronization
-Result<YourEntity> syncResult = Sync.SyncData<YourEntity>(SourceDatabase, DestinationDatabase);
+Result<YourEntity> syncResult = Sync.SyncData<YourEntity>(SourceDatabase, DestinationDatabase,FilterData);
 
 // Generate SQL queries
 string sqlQueries = Sync.QueryBuilder.GetSqlQueryForSyncData<YourEntity>(syncResult,Sync.ContractFetcher.DestinationQueryGenerationManager);

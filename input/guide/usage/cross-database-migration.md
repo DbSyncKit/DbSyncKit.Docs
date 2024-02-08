@@ -24,8 +24,15 @@ Synchronization Sync = new Synchronization();
 Now that we have the variables set up, let's perform the cross-database migration. Replace `YourEntity` with the appropriate entity you want to synchronize.
 
 ```csharp
+// A method to filter out the result data before creating a hashset (optional or you can pass null instead)
+private List<YourEntity> FilterData(List<T> data)
+{
+    // filter your data here
+    return data;
+}
+
 // Perform Cross-Database Migration
-Result<YourEntity> migrationResult = Sync.SyncData<YourEntity>(Source, Destination);
+Result<YourEntity> migrationResult = Sync.SyncData<YourEntity>(Source, Destination, FilterData);
 ```
 
 The migration result provides detailed information about added, edited, and deleted records, along with the change type and data counts.

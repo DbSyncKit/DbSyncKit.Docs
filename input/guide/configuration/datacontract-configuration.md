@@ -40,7 +40,7 @@ using DbSyncKit.DB.Extensions;
 using DbSyncKit.DB.Interface;
 
 [TableName("Album")]
-public class Album : IDataContract
+public class Album
 {
     [KeyProperty(IsPrimaryKey: true)]
     public int AlbumId { get; set; }
@@ -61,7 +61,7 @@ The `SampleEntity` entity demonstrates the use of various attributes for a more 
 
 ```csharp
 [TableName("SampleEntity"), TableSchema("dbo")]
-public class SampleEntity : IDataContract
+public class SampleEntity
 {
     [KeyProperty(IsPrimaryKey: true), ExcludedProperty]
     public long ID { get; set; }
@@ -106,7 +106,7 @@ In the `SampleEntity` entity, the scenario involves a table where the `ID` prope
 ```csharp
 
 [TableName("SampleEntity"), TableSchema("dbo"), GenerateInsertWithID(includeIdentityInsert: false)]
-public class SampleEntity : IDataContract
+public class SampleEntity
 {
     [KeyProperty(IsPrimaryKey: true)]
     public long ID { get; set; }
@@ -138,7 +138,7 @@ using DbSyncKit.DB.Interface;
 using System.Data;
 
 [TableName("PlaylistTrack")]
-public class PlaylistTrack : IDataContract
+public class PlaylistTrack
 {
     [KeyProperty(isPrimaryKey: true, isComparable: true)]
     public int PlaylistId { get; set; }
