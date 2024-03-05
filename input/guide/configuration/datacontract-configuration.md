@@ -24,10 +24,6 @@ To configure the actual data contract for entities, you can use attributes from 
     - [GenerateWithID](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.GenerateWithID): Determines whether the ID property should be included in the insert query generation. Possible values are `true` (to include the ID property) or `false` (to exclude the ID property).
     - [IncludeIdentityInsert](xref:api-DbSyncKit.DB.Attributes.GenerateInsertWithIDAttribute.IncludeIdentityInsert): Indicates whether to include database-specific SQL statements during insert query generation affecting identity insert behavior. The default value is `true`.
 
-# IDataContract for Identification
-
-The [`IDataContract`](xref:api-DbSyncKit.DB.Interface.IDataContract) interface serves as an identification marker for data contract classes. This interface doesn't include any properties but signifies a specific contract for identification purposes.
-
 
 # Entity Configuration Examples
 
@@ -44,7 +40,7 @@ using DbSyncKit.DB.Extensions;
 using DbSyncKit.DB.Interface;
 
 [TableName("Album")]
-public class Album : IDataContract
+public class Album
 {
     [KeyProperty(IsPrimaryKey: true)]
     public int AlbumId { get; set; }
@@ -65,7 +61,7 @@ The `SampleEntity` entity demonstrates the use of various attributes for a more 
 
 ```csharp
 [TableName("SampleEntity"), TableSchema("dbo")]
-public class SampleEntity : IDataContract
+public class SampleEntity
 {
     [KeyProperty(IsPrimaryKey: true), ExcludedProperty]
     public long ID { get; set; }
@@ -110,7 +106,7 @@ In the `SampleEntity` entity, the scenario involves a table where the `ID` prope
 ```csharp
 
 [TableName("SampleEntity"), TableSchema("dbo"), GenerateInsertWithID(includeIdentityInsert: false)]
-public class SampleEntity : IDataContract
+public class SampleEntity
 {
     [KeyProperty(IsPrimaryKey: true)]
     public long ID { get; set; }
@@ -142,7 +138,7 @@ using DbSyncKit.DB.Interface;
 using System.Data;
 
 [TableName("PlaylistTrack")]
-public class PlaylistTrack : IDataContract
+public class PlaylistTrack
 {
     [KeyProperty(isPrimaryKey: true, isComparable: true)]
     public int PlaylistId { get; set; }

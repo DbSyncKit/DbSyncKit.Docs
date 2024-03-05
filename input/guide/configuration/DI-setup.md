@@ -49,8 +49,8 @@ Configure your source and destination databases using DbSyncKit's [IDatabase](xr
  Api Ref: [Connection](xref:api-DbSyncKit.MSSQL.Connection)
 ```csharp
 // MSSQL manual database configuration
-IDatabase SourceDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", "SourceChinook", true);
-IDatabase DestinationDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", "DestinationChinook", true);
+IDatabase SourceDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", true, "SourceChinook");
+IDatabase DestinationDatabase = new DbSyncKit.MSSQL.Connection("(localdb)\\MSSQLLocalDB", true, "DestinationChinook");
 ```
 
 ## For MySQL

@@ -60,14 +60,14 @@ PropertyInfo[] comparableProperties = Sync.GetComparableProperties<YourEntity>()
 PropertyInfo[] keyProperties = Sync.GetKeyProperties<YourEntity>();
     
 // Create equality comparers
-object keyEqualityComparer = new PropertyEqualityComparer<YourEntity>(keyProperties);
-object ComparablePropertiesComparer = new PropertyEqualityComparer<YourEntity>(comparableProperties);
+PropertyEqualityComparer<YourEntity> keyEqualityComparer = new(keyProperties);
+PropertyEqualityComparer<YourEntity> ComparablePropertiesComparer = new(comparableProperties);
     
 // Get the table name
 string tableName = Sync.GetTableName<YourEntity>();
 
 // Result
-Result<T> result;
+Result<YourEntity> result;
 ```
 
 ## 2) Getting Data
@@ -76,8 +76,15 @@ In this step, data is retrieved from source and destination databases.
 
 **Code Example:**
 ```csharp
+// A method to filter out the result data before creating a hashset (optional or you can pass null instead)
+private List<YourEntity> FilterData(List<T> data)
+{
+    // filter your data here
+    return data;
+}
+
 // Use the synchronization instance to retrieve data
-Sync.ContractFetcher.RetrieveDataFromDatabases<YourEntity>(Source, Destination, tableName, columnList, (PropertyEqualityComparer<T>)ComparablePropertiesComparer, out HashSet<T> SourceList, out HashSet<T> DestinationList);
+Sync.ContractFetcher.RetrieveDataFromDatabases<YourEntity>(Source, Destination, tableName, columnList, ComparablePropertiesComparer, FilterData,out HashSet<YourEntity> SourceList, out HashSet<YourEntity> DestinationList);
 ```
 
 ## 3) Comparison
@@ -87,7 +94,7 @@ This step involves comparing the data from the source and destination databases.
 **Code Example:**
 ```csharp
 // Use the synchronization instance to get differences
-result = Sync.MismatchIdentifier.GetDifferences<YourEntity>(sourceList, destinationList, (PropertyEqualityComparer<T>)keyEqualityComparer, (PropertyEqualityComparer<T>)ComparablePropertiesComparer);
+result = Sync.MismatchIdentifier.GetDifferences<YourEntity>(sourceList, destinationList, keyEqualityComparer, ComparablePropertiesComparer);
 ```
 
 ## 4) Generating SQL Queries

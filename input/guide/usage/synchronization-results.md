@@ -39,8 +39,15 @@ Indicates the type of change represented by the synchronization result. Possible
 Here's an example of how to use the synchronization result:
 
 ```csharp
+// A method to filter out the result data before creating a hashset (optional or you can pass null instead)
+private List<YourEntity> FilterData(List<T> data)
+{
+    // filter your data here
+    return data;
+}
+
 // Perform synchronization
-Result<YourEntity> syncResult = Sync.SyncData<YourEntity>(SourceDatabase, DestinationDatabase);
+Result<YourEntity> syncResult = Sync.SyncData<YourEntity>(SourceDatabase, DestinationDatabase,FilterData);
 
 // Accessing synchronization result properties & getting its count
 Console.WriteLine($"Added: {data.Added.Count} EditedDetailed: {data.EditedDetailed.Count} Deleted: {data.Deleted.Count}");
