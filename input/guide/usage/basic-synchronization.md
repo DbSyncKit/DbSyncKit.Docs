@@ -77,7 +77,7 @@ In this step, data is retrieved from source and destination databases.
 **Code Example:**
 ```csharp
 // A method to filter out the result data before creating a hashset (optional or you can pass null instead)
-private List<YourEntity> FilterData(List<T> data)
+private List<YourEntity> FilterData(List<YourEntity> data)
 {
     // filter your data here
     return data;

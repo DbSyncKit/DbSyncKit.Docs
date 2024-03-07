@@ -51,8 +51,8 @@ var query = Sync.QueryBuilder.GetSqlQueryForSyncData(migrationResult,Sync.Contra
 
 ### Importatant
 
-Please note that **SQL queries generated** should be based on the **destination [IDatabase](xref:api-DbSyncKit.DB.Interface.IDatabase)** or [**IQueryGenerator**](xref:api-DbSyncKit.DB.Interface.IQueryGenerator) Instance.
+Please note that **SQL queries generated** should be based on the **destination [IDatabase](xref:api-DbSyncKit.DB.Interface.IDatabase)** or [**IQueryGenerator**](xref:api-DbSyncKit.Templates.Interface.IQueryGenerator) Instance.
 
-For instance, when fetching data for synchronization using the [DataContractFetcher](xref:api-DbSyncKit.Core.Fetcher.DataContractFetcher) from the [Synchronization](xref:api-DbSyncKit.Core.Synchronization) instance, you can leverage the **IQueryGenerator** instance obtained during the data retrieval process.
+For instance, when fetching data for synchronization using the [DataContractFetcher](xref:api-DbSyncKit.DB.Fetcher.DataContractFetcher) from the [Synchronization](xref:api-DbSyncKit.Core.Synchronization) instance, you can leverage the **IQueryGenerator** instance obtained during the data retrieval process.
 
 Proceed to the [Usage Guide](xref:usage) for more comprehensive guidance on using DbSyncKit with different scenarios.
