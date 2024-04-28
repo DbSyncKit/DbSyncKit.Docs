@@ -12,6 +12,7 @@ DbSyncKit introduces a powerful feature with the Query Generation Templates pack
 - [MSSQL](xref:packages/dbsynckit.templates.mssql)
 - [MySQL](xref:packages/dbsynckit.templates.mysql)
 - [PostgreSQL](xref:packages/dbsynckit.templates.postgresql)
+- [SQLite](xref:packages/dbsynckit.templates.sqlite)
 
 Explore the capabilities of each template package to streamline your SQL query generation experience.
 
@@ -20,6 +21,7 @@ For detailed information, visit the documentation for each package:
 - [DbSyncKit.Templates.MSSQL Documentation](xref:packages/dbsynckit.templates.mssql)
 - [DbSyncKit.Templates.MySQL Documentation](xref:packages/dbsynckit.templates.mysql)
 - [DbSyncKit.Templates.PostgreSQL Documentation](xref:packages/dbsynckit.templates.postgresql)
+- [DbSyncKit.Templates.SQLite Documentation](xref:packages/dbsynckit.templates.sqlite)
 
 Additionally, if you have any questions or need assistance, feel free to reach out to our community and share your queries in the discussions.
 
