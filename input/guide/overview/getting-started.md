@@ -24,6 +24,7 @@ Choose the appropriate package based on the database system you are working with
 - For Microsoft SQL Server: [DbSyncKit.MSSQL](xref:packages/dbsynckit.mssql)
 - For MySQL: [DbSyncKit.MySQL](xref:packages/dbsynckit.mysql)
 - For PostgreSQL: [DbSyncKit.PostgreSQL](xref:packages/dbsynckit.postgresql)
+- For SQLite: [DbSyncKit.SQLite](xref:packages/dbsynckit.sqlite)
 
 ## Templating Packages
 
@@ -33,6 +34,7 @@ Enhance your synchronization workflows with the Templating feature. Install the 
 - For Microsoft SQL Server: [DbSyncKit.Templates.MSSQL](xref:packages/dbsynckit.templates.mssql)
 - For MySQL: [DbSyncKit.Templates.MySQL](xref:packages/dbsynckit.templates.mysql)
 - For PostgreSQL: [DbSyncKit.Templates.PostgreSQL](xref:packages/dbsynckit.templates.postgresql)
+- For SQLite: [DbSyncKit.Templates.SQLite](xref:packages/dbsynckit.templates.sqlite)
 
 Install these packages using your preferred package manager. For example, using NuGet:
 
@@ -42,10 +44,12 @@ dotnet add package DbSyncKit.DB
 dotnet add package DbSyncKit.MSSQL
 dotnet add package DbSyncKit.MySQL
 dotnet add package DbSyncKit.PostgreSQL
+dotnet add package DbSyncKit.SQLite
 dotnet add package DbSyncKit.Templates
 dotnet add package DbSyncKit.Templates.MSSQL
 dotnet add package DbSyncKit.Templates.MySQL
 dotnet add package DbSyncKit.Templates.PostgreSQL
+dotnet add package DbSyncKit.Templates.SQLite
 ```
 
 Ensure your project is configured to use these packages.

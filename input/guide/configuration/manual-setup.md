@@ -31,6 +31,13 @@ API Reference: [QueryGenerator](xref:api-DbSyncKit.PostgreSQL.QueryGenerator)
 IQueryGenerator queryGenerator = new DbSyncKit.PostgreSQL.QueryGenerator();
 ```
 
+## For SQLite
+API Reference: [QueryGenerator](xref:api-DbSyncKit.SQLite.QueryGenerator)
+
+```csharp
+IQueryGenerator queryGenerator = new DbSyncKit.SQLite.QueryGenerator();
+```
+
 # 2. Synchronization Setup
 
 To set up the synchronization process manually, you'll need to create instances of DbSyncKit components.
@@ -68,6 +75,14 @@ Api Ref: [Connection](xref:api-DbSyncKit.PostgreSQL.Connection)
 // MySQL manual database configuration
 IDatabase SourceDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "sourceChinook", "postgres", "");
 IDatabase DestinationDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "destinationChinook", "postgres", "");
+```
+
+## For SQLite
+Api Ref: [Connection](xref:api-DbSyncKit.SQLite.Connection)
+```csharp
+// SQLite manual database configuration
+IDatabase SourceDatabase = new DbSyncKit.SQLite.Connection(Path.Combine("Path", "to", "sourceChinook.sqlite"));
+IDatabase DestinationDatabase = new DbSyncKit.SQLite.Connection(Path.Combine("Path", "to", "destinationChinook.sqlite"));
 ```
 
 Replace connection strings and other details according to your actual configurations.

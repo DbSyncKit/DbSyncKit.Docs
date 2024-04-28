@@ -24,6 +24,11 @@ DbSyncKit supports synchronization across various database platforms. Below is a
 - **Package:** [DbSyncKit.PostgreSQL](xref:packages/dbsynckit.postgresql)
 - **Documentation:** [PostgreSQL Documentation](xref:api-DbSyncKit.PostgreSQL)
 
+## SQLite
+
+- **Package:** [DbSyncKit.SQLite](xref:packages/dbsynckit.sqlite)
+- **Documentation:** [SQLite Documentation](xref:api-DbSyncKit.sqlite)
+
 # Future Additions
 
 Explore the upcoming features and database providers planned for future releases on the [Future Additions](xref:future-plans) page.
