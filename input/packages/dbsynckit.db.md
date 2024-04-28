@@ -13,6 +13,7 @@ DbSyncKit.DB is a package that extends DbSyncKit.Core, providing database-specif
 - **Microsoft SQL Server (MSSQL):** DbSyncKit.MSSQL package
 - **MySQL:** DbSyncKit.MySQL package
 - **PostgreSQL:** DbSyncKit.PostgreSQL package
+- **SQLite:** DbSyncKit.SQLite package
 - **(Additional Providers):** Future extensions may include support for other database providers.
 
 # Installation
@@ -23,7 +24,7 @@ Choose the appropriate `DbSyncKit.DB` package based on your target database prov
 dotnet add package DbSyncKit.MSSQL
 ```
 
-Replace `MSSQL` with `MySQL`, `PostgreSQL`, or the relevant provider when installing a different package.
+Replace `MSSQL` with `MySQL`, `PostgreSQL`, `SQLite`, or the relevant provider when installing a different package.
 
 # Documentation
 
