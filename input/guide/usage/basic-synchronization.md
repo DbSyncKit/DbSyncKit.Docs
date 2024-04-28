@@ -14,7 +14,7 @@ Before we start, ensure that you have the following:
 
 - [DbSyncKit.Core](xref:packages/DbSyncKit.Core) package installed
 - [DbSyncKit.DB](xref:packages/DbSyncKit.DB) package installed
-- Appropriate database provider package installed (e.g., [DbSyncKit.MSSQL](xref:packages/DbSyncKit.MSSQL), [DbSyncKit.MySQL](xref:packages/DbSyncKit.MySQL), [DbSyncKit.PostgreSQL](xref:packages/DbSyncKit.PostgreSQL))
+- Appropriate database provider package installed (e.g., [DbSyncKit.MSSQL](xref:packages/DbSyncKit.MSSQL), [DbSyncKit.MySQL](xref:packages/DbSyncKit.MySQL), [DbSyncKit.PostgreSQL](xref:packages/DbSyncKit.PostgreSQL),  [DbSyncKit.SQLite](xref:packages/DbSyncKit.SQLite))
 
 # Setup
 

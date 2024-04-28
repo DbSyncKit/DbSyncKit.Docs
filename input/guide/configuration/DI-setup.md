@@ -64,9 +64,17 @@ IDatabase DestinationDatabase = new DbSyncKit.MySQL.Connection("localhost", 3306
 ## For PostgreSQL
 Api Ref: [Connection](xref:api-DbSyncKit.PostgreSQL.Connection)
 ```csharp
-// MySQL manual database configuration
+// PostgreSQL manual database configuration
 IDatabase SourceDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "sourceChinook", "postgres", "");
 IDatabase DestinationDatabase = new DbSyncKit.PostgreSQL.Connection("localhost", 5432, "destinationChinook", "postgres", "");
+```
+
+## For SQLite
+Api Ref: [Connection](xref:api-DbSyncKit.SQLite.Connection)
+```csharp
+// SQLite manual database configuration
+IDatabase SourceDatabase = new DbSyncKit.SQLite.Connection(Path.Combine("Path", "to", "sourceChinook.sqlite"));
+IDatabase DestinationDatabase = new DbSyncKit.SQLite.Connection(Path.Combine("Path", "to", "destinationChinook.sqlite"));
 ```
 
 Replace connection strings and other details according to your actual configurations.

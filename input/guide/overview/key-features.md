@@ -15,11 +15,11 @@ DbSyncKit is built for speed and efficiency, ensuring your data synchronization 
 
 # 2. Flexibility
 
-DbSyncKit provides a flexible solution for diverse database environments. Whether you're working with [Microsoft SQL Server](xref:packages/dbsynckit.mssql), [MySQL](xref:packages/dbsynckit.mysql), or [PostgreSQL](xref:packages/dbsynckit.postgresql), DbSyncKit adapts seamlessly to your specific environment.
+DbSyncKit provides a flexible solution for diverse database environments. Whether you're working with [Microsoft SQL Server](xref:packages/dbsynckit.mssql), [MySQL](xref:packages/dbsynckit.mysql), [SQLite](xref:packages/dbsynckit.sqlite), or [PostgreSQL](xref:packages/dbsynckit.postgresql), DbSyncKit adapts seamlessly to your specific environment.
 
 # 3. Comprehensive Toolset
 
-DbSyncKit offers a comprehensive toolset to address a wide range of synchronization needs. From core functionalities to specialized packages for [MSSQL](xref:packages/dbsynckit.mssql), [MySQL](xref:packages/dbsynckit.mysql), and [PostgreSQL](xref:packages/dbsynckit.postgresql), you'll find the tools necessary to streamline your synchronization operations.
+DbSyncKit offers a comprehensive toolset to address a wide range of synchronization needs. From core functionalities to specialized packages for [MSSQL](xref:packages/dbsynckit.mssql), [MySQL](xref:packages/dbsynckit.mysql), [SQLite](xref:packages/dbsynckit.sqlite), and [PostgreSQL](xref:packages/dbsynckit.postgresql), you'll find the tools necessary to streamline your synchronization operations.
 
 ## 3.1 Core Functionality
 
@@ -27,7 +27,7 @@ The core functionality of DbSyncKit, provided by [DbSyncKit.Core](xref:packages/
 
 ## 3.2 Database Provider Packages
 
-For users working with [Microsoft SQL Server](xref:packages/dbsynckit.mssql), [MySQL](xref:packages/dbsynckit.mysql), or [PostgreSQL](xref:packages/dbsynckit.postgresql), DbSyncKit offers specialized packages tailored to the unique requirements of these database platforms. These packages provide additional functionalities and optimizations to enhance the synchronization experience.
+For users working with [Microsoft SQL Server](xref:packages/dbsynckit.mssql), [MySQL](xref:packages/dbsynckit.mysql), [SQLite](xref:packages/dbsynckit.sqlite), or [PostgreSQL](xref:packages/dbsynckit.postgresql), DbSyncKit offers specialized packages tailored to the unique requirements of these database platforms. These packages provide additional functionalities and optimizations to enhance the synchronization experience.
 
 ## 3.3 Templating
 
@@ -38,6 +38,7 @@ DbSyncKit introduces a Templating feature to streamline and simplify the synchro
 - [DbSyncKit.Templates.MSSQL](xref:packages/dbsynckit.templates.mssql)
 - [DbSyncKit.Templates.MySQL](xref:packages/dbsynckit.templates.mysql)
 - [DbSyncKit.Templates.PostgreSQL](xref:packages/dbsynckit.templates.postgresql)
+- [DbSyncKit.Templates.SQLite](xref:packages/dbsynckit.templates.sqlite)
 
 
 # Next Steps
@@ -51,4 +52,5 @@ Explore the individual packages within DbSyncKit to understand their functionali
 - [DbSyncKit.MSSQL](xref:packages/dbsynckit.mssql)
 - [DbSyncKit.MySQL](xref:packages/dbsynckit.mysql)
 - [DbSyncKit.PostgreSQL](xref:packages/dbsynckit.postgresql)
+- [DbSyncKit.SQLite](xref:packages/dbsynckit.sqlite)
 - [DbSyncKit.Templates](xref:packages/dbsynckit.templates)
