@@ -18,6 +18,14 @@ dotnet add package DbSyncKit.SQLite
 
 Make sure to include the appropriate version based on your project requirements.
 
+Ensure that SQLite platform library is properly initialized in your application's entry point. Add the following line to the entry point of your application:
+
+```csharp
+SQLitePCL.Batteries.Init();
+```
+
+This initialization step is crucial for proper functioning of SQLite within Xamarin and UWP projects.
+
 # Documentation
 
 Explore the detailed API documentation for DbSyncKit.SQLite to understand the classes, methods, and features specific to SQLite database synchronization:
