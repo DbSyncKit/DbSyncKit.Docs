@@ -38,4 +38,10 @@
     <ProjectReference Include="..\DbSyncKit.Templates\src\DbSyncKit.Templates.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="assets\logo.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
